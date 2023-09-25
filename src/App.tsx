@@ -1,25 +1,18 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Character from './models/character';
+import CHARACTERS from './models/mock-character';
 
 const App: FunctionComponent = () => {
+  const [listCharacters] = useState<Character[]>(CHARACTERS);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+      <h1>One Piece App</h1>
+          <p>Bonjour, Il y a {listCharacters.length} personnages !</p>
+
+      </div>
   );
 }
 
