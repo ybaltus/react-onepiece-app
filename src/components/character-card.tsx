@@ -1,5 +1,7 @@
 import React, {FunctionComponent, useState} from "react";
 import Character from "../models/character";
+import formatDate from "../helpers/format-date";
+import formatSkill from "../helpers/format-skill";
 import { 
     Button,
     Card,
@@ -56,11 +58,15 @@ const CharacterCard: FunctionComponent<Props> = ({borderColor = '#3182ce', borde
                       <strong>Prime : </strong>{bounty} Berrys
                     </Text>
                     <Text fontSize={'sm'}>
-                      <strong>Créé le : </strong>{createdAt.toDateString()}
+                      <strong>Créé le : </strong>{formatDate(createdAt)}
                     </Text>
                     <HStack spacing={4} py={'4'}>
                       {skills.map((skill) => (
-                        <Tag size={'md'} key={id+'_'+skill}>{skill}</Tag>
+                        <Tag 
+                        size={'md'} 
+                        key={id+'_'+skill}
+                        colorScheme={formatSkill(skill)}
+                        >{skill}</Tag>
                       ))}
                     </HStack>
                   </CardBody>

@@ -1,16 +1,18 @@
-import React, {FunctionComponent, useEffect, useState} from "react";
-import Character from "../models/character";
-import CHARACTERS from "../models/mock-character";
+//import React, {FunctionComponent, useEffect, useState} from "react";
+//import Character from "../models/character";
+//import CHARACTERS from "../models/mock-character";
 import CharacterCard from "../components/character-card";
 import { Heading, SimpleGrid, Center } from "@chakra-ui/react";
+import useCharacters from "../hooks/character.hook";
 
 const CharacterList = () => {
-    const [listCharacters, setListCharacters] = useState<Character[]>([]);
+    /*const [listCharacters, setListCharacters] = useState<Character[]>([]);
 
     // Initialize listCharacters
     useEffect(() => {
         setListCharacters(CHARACTERS);
-    }, []);
+    }, []);*/
+    const listCharacters = useCharacters(); // Hooks personalisé
 
     return (
         <>
