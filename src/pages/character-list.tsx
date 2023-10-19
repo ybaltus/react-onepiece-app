@@ -1,7 +1,7 @@
 //import React, {FunctionComponent, useEffect, useState} from "react";
 //import Character from "../models/character";
 //import CHARACTERS from "../models/mock-character";
-import CharacterCard from "../components/character-card";
+import CharacterCard from "../components/character-card/character-card";
 import { Heading, SimpleGrid, Center } from "@chakra-ui/react";
 import useCharacters from "../hooks/character.hook";
 

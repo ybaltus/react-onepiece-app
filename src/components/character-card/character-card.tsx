@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useState} from "react";
-import Character from "../models/character";
-import formatDate from "../helpers/format-date";
-import formatSkill from "../helpers/format-skill";
+import Character from "../../models/character";
+import formatDate from "../../helpers/format-date";
+import formatSkill from "../../helpers/format-skill";
 import { 
     Button,
     Card,
@@ -15,6 +15,7 @@ import {
     Text
 } from "@chakra-ui/react";
 import './character-card.css';
+import { useNavigate } from "react-router-dom";
 
 type Props = {
     character: Character,
@@ -24,6 +25,7 @@ type Props = {
 
 const CharacterCard: FunctionComponent<Props> = ({borderColor = '#3182ce', borderWidth = '1px', character:{id, name, skills, picture, bounty, createdAt}}) => {
     const [widthBorder, setwidthBorder] = useState<string>();
+    const navigate = useNavigate();
 
     const zoomBorder = () => {
         setwidthBorder('4px');
@@ -31,6 +33,10 @@ const CharacterCard: FunctionComponent<Props> = ({borderColor = '#3182ce', borde
 
     const resetBorder = () => {
         setwidthBorder('1px');
+    }
+
+    const showDetail = (id:number) => {
+      navigate(`/characters/${id}`);
     }
 
     return (
@@ -72,7 +78,7 @@ const CharacterCard: FunctionComponent<Props> = ({borderColor = '#3182ce', borde
                   </CardBody>
   
                   <CardFooter>
-                    <Button variant='solid' colorScheme='blue'>
+                    <Button variant='solid' colorScheme='blue' onClick={() => showDetail(id)}>
                       Consulter
                     </Button>
                   </CardFooter>
