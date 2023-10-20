@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import CharacterDetail from './pages/character-detail';
 import Navbar from './components/navbar/navbar';
 import PageNoteFound from './pages/page-not-found';
+import CharacterEdit from "./pages/character-edit";
 
 const App: FunctionComponent = () => {
   return (
@@ -14,6 +15,7 @@ const App: FunctionComponent = () => {
         <Route path='/' element={<CharacterList />} />
         <Route path='/characters' element={<CharacterList/>} />
         <Route path='/characters/:id' element={<CharacterDetail/>} />
+        <Route path='/characters/edit/:id' element={<CharacterEdit/>} />
         <Route path="*" element={<PageNoteFound />} />
       </Routes>
     </Container>

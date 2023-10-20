@@ -1,8 +1,8 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
 import Character from "../models/character";
 import CHARACTERS from "../models/mock-character";
-import { useNavigate, useParams } from "react-router-dom";
-import { 
+import {Link, useNavigate, useParams} from "react-router-dom";
+import {
     Card,
     Stack,
     CardBody,
@@ -12,11 +12,13 @@ import {
     Text,
     CardFooter,
     Button,
-    Image, 
-    Center
+    Image,
+    Center, IconButton
 } from "@chakra-ui/react";
+
 import formatDate from "../helpers/format-date";
 import formatSkill from "../helpers/format-skill";
+import {EditIcon} from "@chakra-ui/icons";
 
 type Params = {
     id: string;
@@ -55,6 +57,17 @@ const CharacterDetail: FunctionComponent = () => {
                     alt={character.name}
                     borderRadius='lg'
                     />
+                        {/* Control btn*/}
+                        <Link
+                            to={`/characters/edit/${character.id}`}
+                        >
+                            <IconButton
+                                variant='outline'
+                                colorScheme='teal'
+                                aria-label='Send email'
+                                icon={<EditIcon />}
+                            />
+                        </Link>
                     <Stack>
                         <CardBody>
                             <Heading size='md'> {character.name}</Heading>
@@ -87,7 +100,7 @@ const CharacterDetail: FunctionComponent = () => {
                         </CardBody>
         
                         <CardFooter>
-                            <Button variant='solid' colorScheme='yellow' onClick={navHome}>
+                            <Button variant='solid' colorScheme='gray' onClick={navHome}>
                             Retour
                             </Button>
                         </CardFooter>
