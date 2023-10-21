@@ -1,40 +1,37 @@
-//import React, {FunctionComponent, useEffect, useState} from "react";
-//import Character from "../models/character";
-//import CHARACTERS from "../models/mock-character";
+import React, {FunctionComponent, useContext, useEffect} from "react";
 import CharacterCard from "../components/character-card/character-card";
 import { Heading, SimpleGrid, Center } from "@chakra-ui/react";
-import useCharacters from "../hooks/character.hook";
+import ApiContext from "../contexts/api-context";
 
-const CharacterList = () => {
-    /*const [listCharacters, setListCharacters] = useState<Character[]>([]);
+const CharacterList: FunctionComponent = () => {
+    const {characters, getAll} = useContext(ApiContext);
 
-    // Initialize listCharacters
+    // Initialize Characters
     useEffect(() => {
-        setListCharacters(CHARACTERS);
-    }, []);*/
-    const listCharacters = useCharacters(); // Hooks personalisé
+        getAll();
+    }, []);
 
     return (
         <>
-        <Center>
-            <Heading 
-            as='h1'
-            size='lg'
-            m={'40px'}
-            >Liste des personnages de One Piece.</Heading>
-        </Center>
-        
-        <SimpleGrid
-            mt={'10px'}
-            mb={'30px'}
-            spacing={4}
-            minChildWidth='350px'
-        >
-            {listCharacters.map(character => (
-                <CharacterCard key={character.id+'_op'}  character={character}/>
-            ))
-            }
-        </SimpleGrid>
+            <Center>
+                <Heading
+                    as='h1'
+                    size='lg'
+                    m={'40px'}
+                >Liste des personnages de One Piece.</Heading>
+            </Center>
+
+            <SimpleGrid
+                mt={'10px'}
+                mb={'30px'}
+                spacing={4}
+                minChildWidth='350px'
+            >
+                {characters.map(character => (
+                    <CharacterCard key={character.id+'_op'}  character={character}/>
+                ))
+                }
+            </SimpleGrid>
         </>
     );
 }

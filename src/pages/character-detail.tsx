@@ -1,6 +1,6 @@
-import React, {FunctionComponent, useEffect, useState} from "react";
+import React, {FunctionComponent, useContext, useEffect, useState} from "react";
 import Character from "../models/character";
-import CHARACTERS from "../models/mock-character";
+// import CHARACTERS from "../models/mock-character";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {
     Card,
@@ -19,21 +19,17 @@ import {
 import formatDate from "../helpers/format-date";
 import formatSkill from "../helpers/format-skill";
 import {EditIcon} from "@chakra-ui/icons";
-
-type Params = {
-    id: string;
-}
+import ApiContext from "../contexts/api-context";
 
 const CharacterDetail: FunctionComponent = () => {
     const params = useParams();
     const navigate = useNavigate();
     const [character, setCharacter] = useState<Character|null>(null);
+    const {getById} = useContext(ApiContext);
     
     useEffect(() => {
-        CHARACTERS.map(char => {
-            if(params.id === char.id.toString()){
-                setCharacter(char);
-            }
+        getById(params.id).then((char: Character|null) => {
+            setCharacter(char);
         })
     }, [params.id]);
 
