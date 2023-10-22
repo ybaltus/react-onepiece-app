@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": 2,
+      "bounty": 1111000000,
+      "age": 21,
+      "name": "Roronoa Zoro",
+      "type": "Humain",
+      "picture": "https://cutewallpaper.org/24/zoro-png/download-22c90-roronoa-b7abd-the-16c55-team-51fdb-mugiwara-8f8ce-one-be75e-piece-7f841-roronoa-5a209-zoro---ii---green---full---set---cosplay---costume---png---image---with---no---background---pngkeycom.png",
+      "skills": [
+        "Santôryû",
+        "Haki"
+      ]
+    },
+    {
       "id": 3,
       "bounty": 366000000,
       "age": 20,
@@ -107,19 +119,6 @@
         "Gyojin Karate",
         "Haki"
       ]
-    },
-    {
-      "id": 1697969902721,
-      "bounty": 100,
-      "age": 10,
-      "name": "John Sparrow",
-      "type": "Humain",
-      "picture": "https://imgs.search.brave.com/MmqzBUm8k37sW8I7es69kAqo1HubHcYXsNNPZ5rjE9U/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/c2VyaWVvdXNseS5j/b20vYXBwL3VwbG9h/ZHMvMjAyMy8wNy9q/YWNrLXNwYXJyb3ct/cGlyYXRlcy1kZXMt/Y2FyYWliZXMtMS5q/cGc",
-      "skills": [
-        "Haki",
-        "Navigateur"
-      ],
-      "createdAt": "2023-10-22T10:18:22.721Z"
     }
   ]
 }

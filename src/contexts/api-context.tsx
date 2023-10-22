@@ -5,13 +5,19 @@ import {Params} from "react-router-dom";
 type PropsContext = {
     characters: Character[],
     getAll: Function,
-    getById: Function
+    getById: Function,
+    updateCharacter: Function,
+    deleteCharacter: Function,
+    addCharacter: Function
 }
 
 const ApiContext = createContext<PropsContext>({
     characters: [],
     getAll: (): void => {},
-    getById: (): void => {}
+    getById: (): void => {},
+    updateCharacter: (): void => {},
+    deleteCharacter: (): void => {},
+    addCharacter: (): void => {}
 });
 
 const ApiProvider: FunctionComponent<any> = ({children}) => {
@@ -57,12 +63,66 @@ const ApiProvider: FunctionComponent<any> = ({children}) => {
         }
     }
 
+    const addCharacter = async (character: Character): Promise<Character> => {
+        try{
+            const response: Response = await fetch(`${BaseUrl}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(character)
+            });
+            return await response.json();
+
+        }catch(error: any){
+            console.log(error.message);
+            throw new Error("Le personnage n'a pas pu être ajouté.");
+        }
+    }
+
+    const updateCharacter = async (character: Character): Promise<Character> => {
+        try{
+            const response: Response = await fetch(`${BaseUrl}/${character.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(character)
+            });
+            return await response.json();
+
+        }catch(error: any){
+            console.log(error.message);
+            throw new Error("Le personnage n'a pas pu être édité.");
+        }
+    }
+
+    const deleteCharacter = async(character: Character): Promise<{}> =>{
+        try{
+            const response: Response = await fetch(`${BaseUrl}/${character.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(character)
+            });
+            return await response.json();
+
+        }catch(error: any){
+            console.log(error.message);
+            throw new Error("Le personnage n'a pas pu être supprimé.");
+        }
+    }
+
     return (
         <ApiContext.Provider
             value={{
                 characters,
                 getAll,
-                getById
+                getById,
+                updateCharacter,
+                deleteCharacter,
+                addCharacter
             }}
         >
             {children}

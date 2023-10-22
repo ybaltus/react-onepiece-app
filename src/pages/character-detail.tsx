@@ -18,14 +18,14 @@ import {
 
 import formatDate from "../helpers/format-date";
 import formatSkill from "../helpers/format-skill";
-import {EditIcon} from "@chakra-ui/icons";
+import {DeleteIcon, EditIcon} from "@chakra-ui/icons";
 import ApiContext from "../contexts/api-context";
 
 const CharacterDetail: FunctionComponent = () => {
     const params = useParams();
     const navigate = useNavigate();
     const [character, setCharacter] = useState<Character|null>(null);
-    const {getById} = useContext(ApiContext);
+    const {getById, deleteCharacter} = useContext(ApiContext);
     
     useEffect(() => {
         getById(params.id).then((char: Character|null) => {
@@ -35,6 +35,13 @@ const CharacterDetail: FunctionComponent = () => {
 
     const navHome = () => {
         navigate('/');
+    }
+
+    const deleteChar = () => {
+        console.log("ok")
+        deleteCharacter(character).then(() => {
+            navigate('/');
+        })
     }
 
     return (
@@ -64,6 +71,13 @@ const CharacterDetail: FunctionComponent = () => {
                                 icon={<EditIcon />}
                             />
                         </Link>
+                        <IconButton
+                            variant='outline'
+                            colorScheme='teal'
+                            aria-label='Send email'
+                            icon={<DeleteIcon />}
+                            onClick={deleteChar}
+                        />
                     <Stack>
                         <CardBody>
                             <Heading size='md'> {character.name}</Heading>
