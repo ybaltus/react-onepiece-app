@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  react-onepiece-dev:
+    container_name: react-onepiece-dev
+    build:
+      context: .
+      dockerfile: "./docker/react-onepiece-dev/Dockerfile"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app/react-onepiece-dev
+      - /app/react-onepiece-dev/node_modules
+
+  json-server:
+    container_name: json-server
+    build:
+      context: .
+      dockerfile: "./docker/json-server/Dockerfile"
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./src/models/db.json:/data/db.json
+    command: json-server --watch /data/db.json --host 0.0.0.0 --port=3001 --delay=500
+

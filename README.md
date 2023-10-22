@@ -17,3 +17,9 @@ Création d'une simple application pour gérer des personnages du manga One Piec
 3. npm run start-api (Démarrer le server json-server)
 4. identifiants de connection: onepiece / onepiece
 ```
+
+## Pour lancer le projet avec docker
+
+```
+1. docker-compose up --build
+```
