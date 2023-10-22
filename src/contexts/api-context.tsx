@@ -1,6 +1,5 @@
 import React, {createContext, FunctionComponent, useState} from "react";
 import Character from "../models/character";
-import {Params} from "react-router-dom";
 
 type PropsContext = {
     characters: Character[],
