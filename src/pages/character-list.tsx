@@ -1,9 +1,10 @@
 import React, {FunctionComponent, useContext, useEffect} from "react";
 import CharacterCard from "../components/character-card/character-card";
-import {Heading, SimpleGrid, Center, Box, Button} from "@chakra-ui/react";
+import {Heading, SimpleGrid, Center, Box, Button, Divider} from "@chakra-ui/react";
 import ApiContext from "../contexts/api-context";
 import {AddIcon} from "@chakra-ui/icons";
 import {Link} from "react-router-dom";
+import CharacterSearch from "../components/character-search/character-search";
 
 const CharacterList: FunctionComponent = () => {
     const {characters, getAll} = useContext(ApiContext);
@@ -22,6 +23,10 @@ const CharacterList: FunctionComponent = () => {
                     m={'40px'}
                 >Liste des personnages de One Piece.</Heading>
             </Center>
+            <Box>
+                <CharacterSearch/>
+            </Box>
+            <Divider m={5}/>
             <Box>
                 <Link
                     to={`/characters/add`}

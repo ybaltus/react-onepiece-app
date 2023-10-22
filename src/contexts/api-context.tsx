@@ -8,7 +8,8 @@ type PropsContext = {
     getById: Function,
     updateCharacter: Function,
     deleteCharacter: Function,
-    addCharacter: Function
+    addCharacter: Function,
+    searchCharacter: Function
 }
 
 const ApiContext = createContext<PropsContext>({
@@ -17,16 +18,18 @@ const ApiContext = createContext<PropsContext>({
     getById: (): void => {},
     updateCharacter: (): void => {},
     deleteCharacter: (): void => {},
-    addCharacter: (): void => {}
+    addCharacter: (): void => {},
+    searchCharacter: (): void => {}
 });
 
 const ApiProvider: FunctionComponent<any> = ({children}) => {
-    // Parameters
-    const BaseUrl: string = "http://localhost:3001/characters";
-
     // Hooks
     const [characters, setCharacters] = useState<Character[]>([])
 
+    // Properties
+    const BaseUrl: string = "http://localhost:3001/characters";
+
+    // Functions
     const getAll = async (): Promise<void> => {
         try{
             const response: Response = await fetch(BaseUrl, {
@@ -114,6 +117,22 @@ const ApiProvider: FunctionComponent<any> = ({children}) => {
         }
     }
 
+    const searchCharacter = async(term: string): Promise<Character[]> => {
+        try{
+            const response: Response = await fetch(`${BaseUrl}?q=${term}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            });
+            return await response.json();
+
+        }catch(error: any){
+            console.log(error.message);
+            throw new Error("La recherche n'a pas aboutie.");
+        }
+    }
+
     return (
         <ApiContext.Provider
             value={{
@@ -122,7 +141,8 @@ const ApiProvider: FunctionComponent<any> = ({children}) => {
                 getById,
                 updateCharacter,
                 deleteCharacter,
-                addCharacter
+                addCharacter,
+                searchCharacter
             }}
         >
             {children}

@@ -4,6 +4,7 @@ import {Box, Button, Center, Heading, Text} from "@chakra-ui/react";
 import CharacterForm from "../components/character-form/character-form";
 import ApiContext from "../contexts/api-context";
 import Character from "../models/character";
+import Loader from "../components/loader/loader";
 
 const CharacterEdit: FunctionComponent = () => {
     const params = useParams();
@@ -32,7 +33,8 @@ const CharacterEdit: FunctionComponent = () => {
                 { character ? (
                     <CharacterForm character={character}/>
                 ) : (
-                    <Text>Aucun personnage à éditer !</Text>
+                    // <Text>Aucun personnage à éditer !</Text>
+                    <Loader/>
                 )}
                 <Button
                     my={10}

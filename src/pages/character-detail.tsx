@@ -20,6 +20,7 @@ import formatDate from "../helpers/format-date";
 import formatSkill from "../helpers/format-skill";
 import {DeleteIcon, EditIcon} from "@chakra-ui/icons";
 import ApiContext from "../contexts/api-context";
+import Loader from "../components/loader/loader";
 
 const CharacterDetail: FunctionComponent = () => {
     const params = useParams();
@@ -118,7 +119,8 @@ const CharacterDetail: FunctionComponent = () => {
                     </Card>
                 </Center>
             ) : (
-                <Heading>Aucun personnage ne correspond à cet identifiant.</Heading>
+                // <Heading>Aucun personnage ne correspond à cet identifiant.</Heading>
+                <Loader/>
             )
             }
         </div>
