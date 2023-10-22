@@ -1,5 +1,4 @@
 const formatDate = (date: Date|string = new Date()): string => {
-    console.log(date);
     if(typeof date === "string"){
         date = new Date(date);
     }
